@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <!-- Vincula tu archivo CSS aquí -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Beues neus-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <!--Metal Mania-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="chatgpt.logo.webp" alt="Formulario de saludo"/>
+        </h1>
+        <form id="formulario">
+            <label for="nombre">NOMBRE</label>
+            <input type="text" id="nombre" placeholder="Ingresa tu nombre" required><br>
+
+            <label for="email">EMAIL</label>
+            <input  type="email" id="email" placeholder="Ingresa tu email" required><br>
+
+            <label for="numero">NUMERO TELEFONICO</label>
+            <input style="margin-bottom: 40px;" type="text" id="numero" placeholder="Ingresa tu numero de telefono" required><br>
+
+            <button style="color: white;" type="button" id="calendarioBoton">SELECCIONAR FECHA</button><br>
+            <input type="date" id="fechaNacimiento" style="display: none;" required><br>
+
+            <button style="color: white;" type="submit">COMPROBAR INFORMACIÓN</button>
+        </form>
+
+        <p style="color: black;font-family: Bebas Neue;" id="mensaje"></p>
+  
+       <a style="color: white;" href="/home/rud-4/Escritorio/mi_pagina_web/gmail/mail.html" class="boton-redireccion">IR A OTRA PAGINA</a>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
