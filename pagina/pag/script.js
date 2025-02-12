@@ -1,7 +1,10 @@
-// Mostrar el calendario al presionar el botón de selección de fecha
-document.getElementById('calendarioBoton').addEventListener('click', function () {
+// Mostrar el calendario al hacer clic en el ícono
+document.getElementById('iconoCalendario').addEventListener('click', function () {
     const fechaNacimiento = document.getElementById('fechaNacimiento');
-    fechaNacimiento.style.display = (fechaNacimiento.style.display === 'none' || fechaNacimiento.style.display === '') ? 'inline' : 'none';
+
+    // Mostrar el input de fecha y abrir automáticamente el selector de fecha
+    fechaNacimiento.style.display = 'inline';
+    fechaNacimiento.showPicker(); // Esta función abre directamente el calendario en navegadores compatibles
 });
 
 // Manejar el envío del formulario
@@ -53,7 +56,7 @@ document.getElementById('formulario').addEventListener('submit', function (event
     }
 
     // Mostrar el mensaje en la página
-    document.getElementById('mensaje').innerHTML = mensaje + mensajeEmail + mensajeNacimiento + mensajeNumero + mensajePassword;
+    document.getElementById('mensaje').innerHTML = mensaje + mensajeEmail + mensajeNacimiento + mensajeNumero + mensajePassword + "<br><br> SI TODO ESTÁ CORRECTO, <br> HAZ CLIC EN 'CONFIRMAR' PARA CONTINUAR.";
 });
 
 // Manejar el botón "CONFIRMAR" para redirigir después de verificar los datos

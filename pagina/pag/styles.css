@@ -76,6 +76,29 @@ button {
     cursor: pointer;
 
 }
+.i {
+    font-family: "bebas-neue-regular", serif;
+    width: 100%;
+    padding: 15px;
+    background-color: #050505;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+
+}
+
+
+.icono-calendario {
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 24px; 
+    color: #000; 
+}
+
+.icono-calendario:hover {
+    color: #555; /* Cambia el color al pasar el mouse */
+}
 
 .boton-redireccion{
    background-color: #050505;
@@ -88,8 +111,14 @@ button {
    font-family: bebas-neue-regular;
 }
 
+#fechaNacimiento {
+    position: absolute; /* Lo saca del flujo del diseño */
+    opacity: 0; /* Lo hace invisible pero sigue funcional */
+    pointer-events: none; /* Evita que interfiera con otros elementos */
+}
+
 button:hover {
-    background-color: #f7f7f7;
+    background-color: #9b9292;
 }
 
 p {
