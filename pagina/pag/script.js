@@ -1,30 +1,39 @@
 // Mostrar el calendario al presionar el botón de selección de fecha
-document.getElementById('calendarioBoton').addEventListener('click', function() {
-    document.getElementById('fechaNacimiento').style.display = 'inline';  // Mostrar el campo de fecha
+document.getElementById('calendarioBoton').addEventListener('click', function () {
+    const fechaNacimiento = document.getElementById('fechaNacimiento');
+    fechaNacimiento.style.display = (fechaNacimiento.style.display === 'none' || fechaNacimiento.style.display === '') ? 'inline' : 'none';
 });
 
 // Manejar el envío del formulario
-document.getElementById('formulario').addEventListener('submit', function(event) {
-    event.preventDefault();  // Evitar el envío del formulario para que no se recargue la página
+document.getElementById('formulario').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evitar recarga de la página
 
     // Obtener los valores del formulario
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
-    const fechaNacimiento = document.getElementById('fechaNacimiento').value;
-    const numero = document.getElementById('numero').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const numero = document.getElementById('numero').value.trim();
+    const fechaNacimiento = document.getElementById('fechaNacimiento').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    // Saludo con nombre
-    let mensaje = `¡Hola, ${nombre}!<br>`;  // Agregar salto de línea después del saludo
+    // Validar que todos los campos estén llenos
+    if (!nombre || !email || !numero || !fechaNacimiento || !password) {
+        document.getElementById('mensaje').innerHTML = "⚠️ Todos los campos son obligatorios.";
+        return;
+    }
 
+    // Guardar los datos en localStorage
+    localStorage.setItem('nombre', nombre);
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+    localStorage.setItem('fechaNacimiento', fechaNacimiento);
+    localStorage.setItem('numero', numero);
 
-    //Numero de telefono
-    let mensajeNumero = numero ? `¡Tu numero de telefono es: ${numero}<br>` : ""; // Salto de línea después del mensaje de edad
-    
-    //Fecha de nacimiento
-    let mensajeNacimiento = fechaNacimiento ? `Naciste el ${fechaNacimiento}.<br>` : "No seleccionaste una fecha de nacimiento.<br>";
-
-    // Validar el email y obtener el tipo de dominio
-    let mensajeEmail = `¡Tu email es de tipo ${valEmail(email)}!<br>`;  // Salto de línea al final del mensaje de email
+    // Mensajes para mostrar en la página
+    let mensaje = `¡Hola, ${nombre}!<br>`;
+    let mensajePassword = `🔑 Tu contraseña es: ${password}.<br>`;
+    let mensajeNumero = `📞 Tu número de teléfono es: ${numero}.<br>`;
+    let mensajeNacimiento = `🎂 Naciste el ${fechaNacimiento}.<br>`;
+    let mensajeEmail = `📧 ¡Tu email es de tipo ${valEmail(email)}!<br>`;
 
     // Función para validar el email
     function valEmail(email) {
@@ -32,30 +41,38 @@ document.getElementById('formulario').addEventListener('submit', function(event)
             return 'inválido';
         }
         const dominio = email.split('@')[1];
-        let validateEmail = '';  // Declarar la variable antes de usarla
-        switch(dominio) {
-            case "gmail.com":
-                validateEmail = "Gmail";
-                break;
-            case "hotmail.com":
-                validateEmail = "Hotmail";
-                break;
-            case "outlook.com":
-                validateEmail = "Outlook";
-                break;
-            case "yahoo.com":
-                validateEmail = "Yahoo";
-                break;
-            default:
-                validateEmail = "Otro";
-                break;
+        let validateEmail = '';
+        switch (dominio) {
+            case "gmail.com": validateEmail = "Gmail"; break;
+            case "hotmail.com": validateEmail = "Hotmail"; break;
+            case "outlook.com": validateEmail = "Outlook"; break;
+            case "yahoo.com": validateEmail = "Yahoo"; break;
+            default: validateEmail = "Otro"; break;
         }
         return validateEmail;
     }
 
-    // Mostrar el mensaje en la página (con saltos de línea)
-    document.getElementById('mensaje').innerHTML = mensaje + mensajeEmail + mensajeNacimiento + mensajeNumero;
-
+    // Mostrar el mensaje en la página
+    document.getElementById('mensaje').innerHTML = mensaje + mensajeEmail + mensajeNacimiento + mensajeNumero + mensajePassword;
 });
 
+// Manejar el botón "CONFIRMAR" para redirigir después de verificar los datos
+document.querySelector('.redireccion').addEventListener('click', function (event) {
+    event.preventDefault(); // Evita la redirección inmediata
 
+    // Obtener los valores actuales del formulario (no del localStorage)
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const nombre = document.getElementById('nombre').value.trim();
+    const numero = document.getElementById('numero').value.trim();
+    const fechaNacimiento = document.getElementById('fechaNacimiento').value.trim();
+
+    // Verificar si todos los campos están completos
+    if (email === "" || password === "" || nombre === "" || numero === "" || fechaNacimiento === "") {
+        document.getElementById('mensaje').innerHTML = "⚠️ Debes completar todos los campos antes de continuar.";
+        return; // Detener la ejecución si falta alguno de los campos
+    }
+
+    // Redirigir a la página de inicio de sesión
+    window.location.href = "/pagina/mail/mail.html";
+});
