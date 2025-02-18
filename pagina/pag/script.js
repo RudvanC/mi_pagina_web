@@ -77,5 +77,5 @@ document.querySelector('.redireccion').addEventListener('click', function (event
     }
 
     // Redirigir a la página de inicio de sesión
-    window.location.href = "/pagina/mail/mail.html";
+    window.location.href = "/mi_pagina_web/pagina/mail/mail.html";
 });
